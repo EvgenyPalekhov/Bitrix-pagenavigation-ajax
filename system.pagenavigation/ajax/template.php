@@ -22,5 +22,5 @@ $strNavQueryString = ($arResult["NavQueryString"] != "" ? $arResult["NavQueryStr
 $strNavQueryStringFull = ($arResult["NavQueryString"] != "" ? "?".$arResult["NavQueryString"] : "");
 ?>
 <?if($arResult["NavPageNomer"] < $arResult["NavPageCount"]):?>
-<a class="more" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=$arResult["NavPageNomer"]+1?>"><?=($arParams['NAV_TITLE'])? $arParams['NAV_TITLE'] : GetMessage("show_more")?><span class="progress"></span></a>
+<a class="more" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=$arResult["NavPageNomer"]+1?>"><?=($arParams['NAV_TITLE'])? $arParams['NAV_TITLE'] : GetMessage("show_more")?></a>
 <?endif;?>
