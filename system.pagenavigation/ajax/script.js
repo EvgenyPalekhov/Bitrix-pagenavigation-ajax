@@ -3,15 +3,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     /* YET - LOAD MORE */
 
-    let yetInitialText,
-        ctrlpanel,
-        row;
+    let yetInitialText;
 
     function loadXMLDoc(url, closestIDelem = false, yet) {
         let xmlhttp = new XMLHttpRequest(),
-            newYet = null,
-            posts = null,
-            i = null,
             error = false,
             postsContainer,
             innerElements;
@@ -46,7 +41,8 @@ document.addEventListener("DOMContentLoaded", function() {
                             if (element.classList.contains('more')) {
                                 // Заменяем ссылку и текст в исходной кнопке (чтобы остался EventListener)
                                 yet.href = element.href;
-                                yet.innerText = yetInitialText;
+                                yet.innerHTML = yetInitialText;
+                                yet.classList.remove('loading');
                                 closestIDelem.appendChild(yet);
                             } else {
                                 closestIDelem.appendChild(element);
@@ -85,8 +81,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function ShowMoreClick(yet) {
         yet.addEventListener("click", function(e) {
-            yetInitialText = yet.innerText;
+            yetInitialText = yet.innerHTML;
             yet.innerHTML = 'Загрузка…';
+            yet.classList.add('loading');
             yet.disabled = true;
             if (this.href.indexOf('ajax_get') !== -1) {
                 loadXMLDoc(this.href, getClosestIDelem(yet), yet);
